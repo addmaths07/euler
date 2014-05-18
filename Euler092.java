@@ -2,12 +2,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Euler92 {
+public class Euler092 {
 
 	public Map<Long, Boolean> oneMap = new HashMap<Long, Boolean>();
 	public Map<Long, Boolean> eightyNineMap = new HashMap<Long, Boolean>();
 	
-	public Euler92() {
+	public Euler092() {
 		oneMap.put(1L, true);
 		oneMap.put(44L, true);
 		oneMap.put(32L, true);
@@ -77,7 +77,7 @@ public class Euler92 {
 		return total.toString();
 	}
 	public static void main(String[] args) {
-		Euler92 e = new Euler92();
+		Euler092 e = new Euler092();
 		//System.out.println(e.compute(10000000L));
 		System.out.println(e.compute(10000000L));
 		//System.out.println(e.isSpecialNum(44L));
