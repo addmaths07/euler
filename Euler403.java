@@ -30,9 +30,9 @@ public class Euler403 {
 		return count;
 	}
 	
-	public Long[] determineRoots2(Long b, Long c){
+	public Long[] determineRoots(Long b, Long c){
 		Long [] roots = null;
-		double discriminent = Math.pow(b,2)- 4*(1)*(c);
+		double discriminent = Math.pow(b,2) - 4*c;
 		
 		if(discriminent>=0){
 			Long discriminent_sqrt = (long)Math.sqrt(discriminent);
@@ -49,8 +49,7 @@ public class Euler403 {
 		return roots;
 	}
 	
-	public Long[] determineRoots(Collection<Long> factors, Long a, Long b){
-		Long count = 0L;
+	public Long[] determineRoots2(Collection<Long> factors, Long a, Long b){
 		Long[] roots = new Long[2];
 		roots[0] = 0L;
 		roots[1] = 0L;
@@ -107,33 +106,15 @@ public class Euler403 {
 		
 		Long count = 0L;
 		Long roots[] = null; 
-		//factors = getFactors(b);
-		//roots = determineRoots(factors, -a, -b);
-		/*
-		roots = determineRoots2(-a, -b);
+
+		roots = determineRoots(-a, -b);
 		if(roots!=null){
-			if(a == 0  || roots[0] == roots[1]){
+			if(a == 0){
 				subCount = subCount + getDomainPoints(roots[0], roots[1], a, b);
 				//System.out.println("subCount : "+subCount);
-			} else if(a<0){
+
+			} else if (roots[0] != roots[1]){
 				count =  count + getDomainPoints(roots[0], roots[1], a, b);
-				//System.out.println(count);
-			}
-		}
-		*/
-		
-		if(a == 0){
-			roots = determineRoots2(-a, -b);
-			if(roots!=null){
-				subCount = subCount + getDomainPoints(roots[0], roots[1], a, b);
-				//System.out.println("subCount : "+subCount);
-			}
-		} else if(a<0){
-			roots = determineRoots2(-a, -b);
-			if(roots!=null){
-				if (roots[0] != roots[1]){
-					count =  count + getDomainPoints(roots[0], roots[1], a, b);
-				}
 			}
 			//System.out.println(count);
 		}
@@ -268,17 +249,9 @@ public class Euler403 {
 		return factors;
 	}
 	
-	public static double calculateEnclosedArea(int a, int b){
-		int i=1;
-		for (int j= 1; j<10; i=i*10,j++);
-		//System.out.println(i);
-		//x^3/3 - (a)*x^2/2 - b*x
-		return i;
-	}
-	
 	public void compute(){
 		
-		calculateEnclosedArea(1,1);
+
 		Long aMax = 1000L;  // 1000000000000L;
 		Long bMax = 1000L;  // 1000000000000L;
 		//Long primesRange = 1L + (long)(Math.sqrt(bMax));
@@ -289,9 +262,9 @@ public class Euler403 {
 		//primes = Utils.getPrimesInRange(2,10000003);
 		Long count = 0L;
 		Long init = System.nanoTime();
-		for (long i = -aMax; i<=0; i++) {
+		for (long i = 0; i<=aMax; i++) {
 			for (long j = -bMax; j<=bMax; j++) {
-				if(Math.abs(i) -1 >Math.abs(j) && j != 0L) 
+				if(i-1 >Math.abs(j) && j != 0L) 
 					continue;
 				count = count + getRangeCount(i, j);
 			}
